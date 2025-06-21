@@ -3,3 +3,4 @@
 *.bak
 .vscode/
 .DS_Store
+secrets/
