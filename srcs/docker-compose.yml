@@ -35,5 +35,13 @@ services:
 volumes:
   wordpress_data:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/emagnani42/data/wordpress
   mariadb_data:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/emagnani42/data/mysql

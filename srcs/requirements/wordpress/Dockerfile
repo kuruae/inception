@@ -1,17 +1,18 @@
-FROM debian:buster
+FROM debian:bookworm
 
 # Update and install php-fpm and required packages
 RUN apt-get update && apt-get install -y \
-    php7.3-fpm \
-    php7.3-mysql \
-    php7.3-curl \
-    php7.3-gd \
-    php7.3-intl \
-    php7.3-mbstring \
-    php7.3-soap \
-    php7.3-xml \
-    php7.3-xmlrpc \
-    php7.3-zip \
+    php8.2-fpm \
+    php8.2-mysql \
+    php8.2-curl \
+    php8.2-gd \
+    php8.2-intl \
+    php8.2-mbstring \
+    php8.2-soap \
+    php8.2-xml \
+    php8.2-xmlrpc \
+    php8.2-zip \
+    php8.2-cli \
     curl \
     wget \
     mariadb-client \
@@ -26,8 +27,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-# Copy the www.conf file to php/7.3/fpm/pool.d/
-COPY conf/www.conf /etc/php/7.3/fpm/pool.d/
+# Copy the www.conf file to php/8.2/fpm/pool.d/
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/
 COPY tools/wordpress_setup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wordpress_setup.sh
 

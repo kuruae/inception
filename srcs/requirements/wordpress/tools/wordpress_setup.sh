@@ -41,8 +41,14 @@ else
         --admin_email=$WORDPRESS_ADMIN_EMAIL \
         --allow-root
 
+    echo "Creating additional WordPress user..."
+    wp user create $WORDPRESS_USER_NAME $WORDPRESS_USER_EMAIL \
+        --role=$WORDPRESS_USER_ROLE \
+        --user_pass=$WORDPRESS_USER_PASSWORD \
+        --allow-root
+
     echo "WordPress setup completed!"
 fi
 
 echo "Starting php-fpm..."
-exec php-fpm7.3 -F
+exec php-fpm8.2 -F
