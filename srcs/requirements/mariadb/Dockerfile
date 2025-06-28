@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bookworm
 
 # Install MariaDB
 RUN apt-get update && apt-get install -y \

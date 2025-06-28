@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bookworm
 
 # Update package list and install nginx and openssl
 RUN apt-get update

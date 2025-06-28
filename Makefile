@@ -6,10 +6,9 @@ all: up
 
 up:
 	@echo "Building and starting containers..."
-	if [ ! -d $(DATA_DIR) ]; then \
-		mkdir -p $(DATA_DIR)/mysql $(DATA_DIR)/wordpress; \
-		chown -R $(USER):$(USER) $(DATA_DIR); \
-	fi
+	@echo "Creating data directories..."
+	mkdir -p $(DATA_DIR)/mysql $(DATA_DIR)/wordpress $(DATA_DIR)/hugo
+#chown -R $(USER):$(USER) $(DATA_DIR)
 	@echo "Starting Docker containers..."
 	docker-compose -f $(COMPOSE_FILE) up --build -d
 
@@ -23,7 +22,7 @@ clean: down
 	@echo "Cleaning Docker system..."
 	@docker system prune -af --volumes
 	@docker volume prune -f
-	@sudo rm -rf $(DATA_DIR)
+	@sudo rm -rf $(DATA_DIR)/mysql/* $(DATA_DIR)/wordpress/* $(DATA_DIR)/hugo/*
 	@echo "Cleanup completed!"
 
 getenv:
