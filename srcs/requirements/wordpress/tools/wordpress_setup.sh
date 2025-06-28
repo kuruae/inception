@@ -16,7 +16,6 @@ else
     wp core download --allow-root
 
     echo "Waiting for database to be ready..."
-    # Test connection with specific parameters
     echo "Testing connection to: $WORDPRESS_DB_HOST with user: $WORDPRESS_DB_USER"
     
     while ! mysqladmin ping -h"$WORDPRESS_DB_HOST" -u"$WORDPRESS_DB_USER" -p"$WORDPRESS_DB_PASSWORD" --silent; do
@@ -46,6 +45,19 @@ else
         --role=$WORDPRESS_USER_ROLE \
         --user_pass=$WORDPRESS_USER_PASSWORD \
         --allow-root
+
+    # FOR BONUSES -- IM ADDING REDIS ONLY AFTER WP INSTALLATION
+    echo "Setting up Redis caching..."
+    wp plugin install redis-cache --activate --allow-root
+    
+    # setup redis in wp-config.php
+    wp config set WP_REDIS_HOST 'redis' --allow-root
+    wp config set WP_REDIS_PORT 6379 --allow-root
+    wp config set WP_CACHE true --allow-root
+    
+    # Enable redis cache
+    wp redis enable --allow-root
+    echo "Redis caching configured and enabled!"
 
     echo "WordPress setup completed!"
 fi

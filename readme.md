@@ -1,17 +1,18 @@
 # Inception
 
-A Docker-based infrastructure project featuring NGINX, WordPress, and MariaDB containers.
+A Docker-based infrastructure project featuring NGINX, WordPress, MariaDB, and Redis containers.
 
 ## About
 
 This project was completed on a VPS instead of the typical local VM setup. The infrastructure includes:
-- NGINX web server
-- WordPress CMS
+- NGINX web server with SSL/TLS
+- WordPress CMS with php-fpm
 - MariaDB database
+- Redis object caching
 
 ## VPS Setup Guide
 
-If you want to do this project on a VPS like I did, check out this comprehensive guide: https://github.com/erdelp/inception-tuto
+If you want to do this project on a VPS like I did, check out this guide: https://github.com/erdelp/inception-tuto
 
 ## SSH Configuration
 
@@ -33,7 +34,3 @@ ssh inception
 ```
 
 Or connect directly through VS Code with the Remote-SSH extension.
-
-## Usage
-
-soon

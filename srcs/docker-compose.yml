@@ -1,14 +1,22 @@
 version: '3.8'
 
+# build = the path to the Dockerfile
+# container_name = the name of the container
+# restart = always = restart the container if it stops
+# env_file = the file that contains environment variables
+# volumes = the path to the volume (storage of the container)
+
 services:
   mariadb:
-    build: ./requirements/mariadb
+    build: ./requirements/mariadb 
     container_name: mariadb
     restart: always
     env_file:
       - .env
     volumes:
       - mariadb_data:/var/lib/mysql
+    networks:
+      - backend
 
   wordpress:
     build: ./requirements/wordpress
@@ -20,6 +28,10 @@ services:
       - wordpress_data:/var/www/html
     depends_on:
       - mariadb
+      - redis
+    networks:
+      - backend    # Can talk to MariaDB and Redis
+      - frontend   # Can talk to Nginx
 
   nginx:
     build: ./requirements/nginx
@@ -31,6 +43,25 @@ services:
     depends_on:
       - wordpress
     restart: always
+    networks:
+      - frontend   # Can only talk to WordPress
+
+  redis:
+    build: ./bonus/redis
+    container_name: redis
+    restart: always
+    networks:
+      - backend
+
+# The network configuration allows containers to communicate
+# however for security concerns, we make a frotend network
+# that only allows Nginx to talk to WordPress, while the backend
+# network allows WordPress to talk to MariaDB and Redis
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
 
 volumes:
   wordpress_data:
