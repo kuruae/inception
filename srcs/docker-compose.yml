@@ -40,6 +40,7 @@ services:
       - "443:443"
     volumes:
       - wordpress_data:/var/www/html
+      - hugo_data:/var/www/hugo
     depends_on:
       - wordpress
     restart: always
@@ -52,6 +53,15 @@ services:
     restart: always
     networks:
       - backend
+
+  hugo:
+    build: ./bonus/hugo
+    container_name: hugo
+    restart: always
+    volumes:
+      - hugo_data:/var/www/html
+    networks:
+      - frontend
 
 # The network configuration allows containers to communicate
 # however for security concerns, we make a frotend network
@@ -76,3 +86,9 @@ volumes:
       type: none
       o: bind
       device: /home/emagnani42/data/mysql
+  hugo_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/emagnani42/data/hugo
