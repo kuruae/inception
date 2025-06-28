@@ -1,3 +1,53 @@
 baseURL = 'https://emagnani.42.fr/me'
 languageCode = 'en-us'
 title = 'Inception Project'
+theme = "hello-friend-ng"
+
+[author]
+  name = "emagnani42"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04"
+
+  # Metadata mostly used in document's head
+  description = "Docker infrastructure project for 42 School"
+  keywords = "docker, nginx, wordpress, mariadb, redis, 42school"
+  images = [""]
+
+  # Home subtitle of the index page
+  homeSubtitle = "Docker infrastructure showcasing modern containerized web stack"
+
+  # Theme settings - ONLY DEFINE ONCE
+  defaultTheme = "dark"
+  disableThemeToggle = true
+  disableReadOtherPosts = false
+
+  # Colors for favicons
+  [params.favicon]
+    color = "#5bbad5"
+    mask = "#5bbad5"
+    msapplication = "#da532c"
+
+  [params.logo]
+    logoMark     = ">"
+    logoText     = "$ cd /inception"
+    logoHomeLink = "/me"
+
+  [params.portrait]
+    path     = ""
+    alt      = "Portrait"
+    maxWidth = "50px"
+
+  # Social icons
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/kuruae"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
