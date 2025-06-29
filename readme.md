@@ -9,6 +9,7 @@ This project was completed on a VPS instead of the typical local VM setup. The i
 - WordPress CMS with php-fpm
 - MariaDB database
 - Redis object caching
+- Hugo static site generator
 
 ## VPS Setup Guide
 
@@ -33,4 +34,4 @@ Then simply use:
 ssh inception
 ```
 
-Or connect directly through VS Code with the Remote-SSH extension.
+Or connect directly through VS Code with the Remote-SSH extension which I highly recommend.

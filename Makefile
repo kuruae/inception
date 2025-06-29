@@ -13,7 +13,7 @@ up:
 	docker-compose -f $(COMPOSE_FILE) up --build -d
 
 down:
-	@echo "Stopping containers and removing volumes..."
+	@echo "Stopping containers..."
 	docker-compose -f $(COMPOSE_FILE) down -v
 
 re: down up
